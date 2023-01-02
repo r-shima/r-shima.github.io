@@ -45,15 +45,15 @@
 									<div class="6u 12u$(medium)">
 										<h3>Overview</h3>
 										<p>In this project, I simulated the dynamics of a dice in a box. I defined the reference frames for the dice and the box, and used them to calculate the Lagrangian, Euler-Lagrange equations, constraints, and the impact update equations. The trajectories of the configuration variables were then animated to simulate the dice bouncing around in a box.</p>
-                                        <div style="text-align: center;">
-                                            <p><a href="https://github.com/r-shima/dice_in_a_box_simulation" class="logo"> View Project on GitHub</a></p>
-                                        </div>
+                                        <!-- <div style="text-align: center;"> -->
+                                        <p><a href="https://github.com/r-shima/dice_in_a_box_simulation" class="logo"> View Project on GitHub</a></p>
+                                        <!-- </div> -->
                                         <hr />
 
                                         <h3>Drawing of the System</h3>
-                                        <div style="text-align: center;">
+                                        <p>
                                             <span class="image fit2"><img src="images/dice_in_a_box/drawing.png" alt="" width="395" height="303" /></span>
-                                        </div>
+										</p>
 
                                         <h4 align="left">Frames</h4>
 								        <ul>
@@ -85,9 +85,9 @@
 
                                         <h4>Constraints</h4>
                                         <p>In order to calculate the constraints, we do a check to see whether the coordinates of a corner of the dice is within a certain range. For example, to detect if the upper right corner of the dice (d1) has impacted the box, we check the coordinates of d1 in d and see if they are between -L_b / 2 and L_b / 2 where L_b is the length of the side of the box. The constraints follow the formula below:</p>
-                                        <div style="text-align: center;">
+                                        <p>
                                             <span class="image fit2"><img src="images/dice_in_a_box/constraints.png" alt="" /></span>
-                                        </div>
+										</p>
                                         <p>There are 16 constraints in total because we do a check twice (one with -L_b / 2 and one with L_b / 2) for both x and y coordinates of each corner of the dice.</p>
 
                                         <h4>External Forces</h4>
@@ -95,16 +95,16 @@
 
                                         <h4>Impact Update Laws</h4>
                                         <p>In order to calculate the impact updates, we first define dummy variables for the configuration for before and after impact (q(tau-), qdot(tau-), and qdot(tau+)), compute dLdqdot, dPhidq, and Hamiltonian, evaluate them using dummy variables for before and after impact, and finally set up the impact update equations and solve for them. The equations are defined as:</p>
-                                        <div style="text-align: center;">
+                                        <p>
                                             <span class="image fit2"><img src="images/dice_in_a_box/impact_update_equations.png" alt="" /></span>
-                                        </div>
+										</p>
                                         <hr />
 
                                         <h3>Results of the Simulation</h3>
                                         <p>The dice starts at rest and falls under gravity. One of its corners eventually hits the bottom of the box, and the box starts rotating because the external forces are being applied to it. The dice experiences multiple collisions with the box’s walls, and continues to rotate and translate. In the simulation, the impacts happen only at the corners of the dice. This behavior makes sense because the initial conditions are set as (0, 0, 0) for the box and (0, 0, pi / 4) for the dice.</p>
-                                        <div style="text-align: center;">
+                                        <p>
                                             <span class="video fit2"><video width="800" height="450" controls loop src="videos/dice_in_a_box/dice_in_a_box.mp4" type="video/mp4"></span>
-                                        </div>
+										</p>
 									</div>
 								</div>
 							</div>

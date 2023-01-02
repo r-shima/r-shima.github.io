@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Rintaroh Shima - Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="landing is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Rintaroh Shima</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="index.html#projects">Projects</a></li>
+											<li><a href="index.html#aboutme">About Me</a></li>
+											<li><a href="#">Resume</a></li>
+											<li><a href="index.html#contact">Contact</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+                    <article id="main">
+                        <header>
+                            <h2>Balloon Volleyball with a 7-DOF Robot Arm</h2>
+                        </header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<div class="row">
+									<div class="6u 12u$(medium)">
+                                        <div style="text-align: center;">
+                                            <span class="image fit2"><img src="images/balloon_volleyball/balloon_volleyball.gif" alt="" /></span>
+                                        </div>
+										<h3>Overview</h3>
+										<p>In this project, I worked with three other students to recreate a human-robot version of the game "Don't let the balloon touch the ground." Using the Intel RealSense D435i camera, the Franka Emika Panda robot is able to track the balloon in real space, predict where the balloon will fall, move to that location before the balloon, and push it up. Once the balloon is in the air, the robot waits for it to fall down and hits it up again. The user interacts with the robot by initially tossing the balloon and adjusting it if it goes out of range.</p>
+                                        <div style="text-align: center;">
+                                            <p><a href="https://github.com/r-shima/AirTrafficControl" class="logo"> View Project on GitHub</a></p>
+                                        </div>
+									</div>
+
+								</div>
+
+                                <hr />
+
+                                <h3 align="left">Group Members</h3>
+                                <ul>
+									<li align="left">Rintaroh Shima (Tracking/Computer Vision)</li>
+									<li align="left">Dilan Wijesinghe</li>
+									<li align="left">Muye Jia</li>
+									<li align="left">Hanbing Wu</li>
+									<li align="left">Ayush Gaggar</li>
+								</ul>
+                                <hr />
+                                
+                                <h3 align="left">Computer Vision</h3>
+                                <p>My main task was to work with another tracking engineer in the group, Dilan Wijesinghe, to design a perception pipeline that can track the balloon in real space. This included calculating the centroid of the balloon and sending it over to the 'hit' node, which was responsible for making a prediction of the balloon's falling location and sending a goal request to the robot.</p>
+                                <p>RealSense D435i camera was used throughout the design process. I first used background substraction, which eliminates the background from an image by extracting the moving foreground from the static background. However, it was not sufficient because the camera also detected random objects. This was a problem since the prediction would only work if the balloon tracking was accurate.</p>
+                                <p>To overcome this problem, we decided to create a frame that detected only the red objects in the scene and then apply background subtraction. This successfully tracked only the moving red balloon and calculated the x, y, and z coordinates of its centroid.</p>
+							</div>
+						</section>
+                    </article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/rintarohshima/" class="icon brands fa-linkedin fa-lg"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/r-shima" class="icon brands fa-github fa-lg"><span class="label">GitHub</span></a></li>
+							<li><a href="mailto:rintarohshima2023@u.northwestern.edu" class="icon solid fa-envelope fa-lg"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>&copy; Rintaroh Shima</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -52,7 +52,7 @@
 
                                         <h3>Drawing of the System</h3>
                                         <div style="text-align: center;">
-                                            <span class="image fit"><img src="images/dice_in_a_box/drawing.png" alt="" /></span>
+                                            <span class="image fit2"><img src="images/dice_in_a_box/drawing.png" alt="" width="395" height="303" /></span>
                                         </div>
 
                                         <h4 align="left">Frames</h4>
@@ -86,7 +86,7 @@
                                         <h4>Constraints</h4>
                                         <p>In order to calculate the constraints, we do a check to see whether the coordinates of a corner of the dice is within a certain range. For example, to detect if the upper right corner of the dice (d1) has impacted the box, we check the coordinates of d1 in d and see if they are between -L_b / 2 and L_b / 2 where L_b is the length of the side of the box. The constraints follow the formula below:</p>
                                         <div style="text-align: center;">
-                                            <span class="image fit"><img src="images/dice_in_a_box/constraints.png" alt="" /></span>
+                                            <span class="image fit2"><img src="images/dice_in_a_box/constraints.png" alt="" /></span>
                                         </div>
                                         <p>There are 16 constraints in total because we do a check twice (one with -L_b / 2 and one with L_b / 2) for both x and y coordinates of each corner of the dice.</p>
 
@@ -96,7 +96,7 @@
                                         <h4>Impact Update Laws</h4>
                                         <p>In order to calculate the impact updates, we first define dummy variables for the configuration for before and after impact (q(tau-), qdot(tau-), and qdot(tau+)), compute dLdqdot, dPhidq, and Hamiltonian, evaluate them using dummy variables for before and after impact, and finally set up the impact update equations and solve for them. The equations are defined as:</p>
                                         <div style="text-align: center;">
-                                            <span class="image fit"><img src="images/dice_in_a_box/impact_update_equations.png" alt="" /></span>
+                                            <span class="image fit2"><img src="images/dice_in_a_box/impact_update_equations.png" alt="" /></span>
                                         </div>
                                         <hr />
 

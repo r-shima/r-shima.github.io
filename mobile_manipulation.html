@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Rintaroh Shima - Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="landing is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Rintaroh Shima</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="index.html#projects">Projects</a></li>
+											<li><a href="index.html#aboutme">About Me</a></li>
+											<li><a href="#">Resume</a></li>
+											<li><a href="index.html#contact">Contact</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+                    <article id="main">
+                        <header>
+                            <h2>Mobile Manipulation Using the Kuka youBot</h2>
+                        </header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<div class="row">
+									<div class="6u 12u$(medium)">
+										<h3>Overview</h3>
+                                        <p>In this project, I wrote software to control the youBot to pick up a cube at a specified location, carry it to a desired location, and put it down. There were three simulated trajectories: best, overshoot, and newTask. They were all simulated in CoppeliaSim.</p>
+                                        <div style="text-align: center;">
+                                            <p><a href="https://github.com/r-shima/mobile_manipulation" class="logo"> View Project on GitHub</a></p>
+                                        </div>
+									</div>
+
+								</div>
+
+								<hr />
+
+								<h3 align="left">Algorithm</h3>
+								<p>There are three important functions in the program: NextState, TrajectoryGenerator, and FeedbackControl.</p>
+								<p>NextState takes in the current robot configuration and the joint speeds to calculate the future configuration (chassis phi, chassis x, chassis y, arm joint angles, and the wheel angles) using the first-order Euler method.</p>
+								<p>TrajectoryGenerator generates configurations (transformation matrices and gripper states) of the end-effector along the eight-segment reference trajectory. The reference trajectory consists of the following:</p>
+								<ol>
+									<li align="left">A trajectory to move the gripper from its initial configuration to a "standoff" configuration a few cm above the block</li>
+									<li align="left">A trajectory to move the gripper down to the grasp position</li>
+									<li align="left">Closing of the gripper</li>
+									<li align="left">A trajectory to move the gripper back up to the "standoff" configuration</li>
+									<li align="left">A trajectory to move the gripper to a "standoff" configuration above the final configuration</li>
+									<li align="left">A trajectory to move the gripper to the final configuration of the object</li>
+									<li align="left">Opening of the gripper</li>
+									<li align="left">A trajectory to move the gripper back to the "standoff" configuration</li>
+								</ol>
+								<p>Finally, FeedbackControl calculates the kinematic task-space feedforward plus feedback control law using Kp, Ki, and the robot configurations. Using the commanded end-effector twist (Ve) calculated from the control law and the pseudoinverse of the end-effector Jacobian (Je), the commanded wheel and arm joint speeds are computed.</p>
+								<hr />
+
+								<h3 align="left">Results</h3>
+								<h4 align="left">best</h4>
+								<p>In best, a well-tuned controller (feedforward-plus-PI with Kp = 7 and Ki = 0.01) was used to allow the robot to pick up the cube and place it at a designated location. In the animation, the motion was smooth, and there was no oscillation. As shown in the plot, the error converges to zero before the end-effector reaches a standoff configuration above the cube. However, there is a very little error when the end-effector goes to the final configuration of the cube.</p>
+								<div style="text-align: center;">
+									<span class="video fit2"><video width="600" height="250" controls loop src="videos/mobile_manipulation/best.mp4" type="video/mp4"></span>
+									<span class="image fit2"><img src="images/mobile_manipulation/best.png" alt="" /></span>
+								</div>
+
+								<h4 align="left">overshoot</h4>
+								<p>In overshoot, a less well-tuned controller (feedforward-plus-PI with Kp = 2 and Ki = 7) was used to allow the robot to accomplish the same tasks. In the animation, when the robot goes to the cube, the end-effector slightly goes past the initial location of the cube, but adjusts its position to pick up the cube and continues to move to the final location to place the cube. The plot clearly shows that the end-effector oscillates back after it slightly goes past the cube.</p>
+								<div style="text-align: center;">
+									<span class="video fit2"><video width="600" height="250" controls loop src="videos/mobile_manipulation/overshoot.mp4" type="video/mp4"></span>
+									<span class="image fit2"><img src="images/mobile_manipulation/overshoot.png" alt="" /></span>
+								</div>
+
+								<h4 align="left">newTask</h4>
+								<p>In newTask, a well-tuned controller (feedforward-plus-PI with Kp = 7 and Ki = 0.01) was used to allow the robot to pick up the cube at a different location and place it at a different goal location. The initial configuration of the cube was changed to (0.5 m, 0.5 m, 0 rad) and the goal configuration of the cube was changed to (0 m, -0.6 m, -1.57079632679 rad) in CoppeliaSim. Just like in the plot for best, the error converges to zero before the end-effector reaches a standoff configuration above the cube. However, there is a very little error when the end-effector goes to the final configuration of the cube.</p>
+								<div style="text-align: center;">
+									<span class="video fit2"><video width="600" height="250" controls loop src="videos/mobile_manipulation/newTask.mp4" type="video/mp4"></span>
+									<span class="image fit2"><img src="images/mobile_manipulation/newTask.png" alt="" /></span>
+								</div>
+							</div>
+						</section>
+                    </article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/rintarohshima/" class="icon brands fa-linkedin fa-lg"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/r-shima" class="icon brands fa-github fa-lg"><span class="label">GitHub</span></a></li>
+							<li><a href="mailto:rintarohshima2023@u.northwestern.edu" class="icon solid fa-envelope fa-lg"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>&copy; Rintaroh Shima</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

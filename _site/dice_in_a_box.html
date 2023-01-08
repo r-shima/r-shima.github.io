@@ -40,70 +40,72 @@
                         </header>
                         <section class="wrapper style5">
 							<div class="inner">
-
-								<div class="row">
-
-									<div class="6u 12u$(medium)">
-										<div style="text-align: center;">
-											<div class="video-container">
-												<iframe width="640" height="360" src="https://www.youtube.com/embed/mC1TW3MqU5Y" allowfullscreen></iframe>
-											</div>
-										</div>
-										<h3>Overview</h3>
-										<p>In this project, I simulated the dynamics of a dice in a box. I defined the reference frames for the dice and the box, and used them to calculate the Lagrangian, Euler-Lagrange equations, constraints, and the impact update equations. The trajectories of the configuration variables were then animated to simulate the dice bouncing around in a box.</p>
-									</div>
-
+								
+								<div class="video-container">
+									<iframe width="640" height="360" src="https://www.youtube.com/embed/mC1TW3MqU5Y" allowfullscreen></iframe>
 								</div>
-
+								<h3>Overview</h3>
+								<p>In this project, I simulated the dynamics of a dice in a box. I defined the reference frames for the dice and the box, and used them to calculate the Lagrangian, Euler-Lagrange equations, constraints, and the impact update equations. The trajectories of the configuration variables were then animated to simulate the dice bouncing around in a box.</p>
                                 <hr />
 
-								<h3 align="left">Drawing of the System</h3>
-								<div style="text-align: center;">
-									<span class="image fit"><img src="images/dice_in_a_box/drawing.png" alt="" /></span>
+								<div class="row">
+									<div class="6u 12u$(medium)">
+										<h3 align="left">System Schematic</h3>
+										<h4 align="left">Frames</h4>
+										<ul>
+											<li align="left">w: World frame</li>
+											<li align="left">b: Box frame</li>
+											<li align="left">d: Dice frame</li>
+											<li align="left">b1, b2, b3, b4: Frames of the 4 sides of the box</li>
+											<li align="left">d1, d2, d3, d4: Frames of the 4 corners of the dice</li>
+										</ul>
+
+										<h4 align="left">Rigid Body Transformations</h4>
+										<ul>
+											<li align="left">g_wb: Transformation from the world frame to the box frame</li>
+											<li align="left">g_wd: Transformation from the world frame to the dice frame</li>
+											<li align="left">g_bb1: Transformation from the box frame to the center of the right side of the box</li>
+											<li align="left">g_bb2: Transformation from the box frame to the center of the top of the box</li>
+											<li align="left">g_bb3: Transformation from the box frame to the center of the left side of the box</li>
+											<li align="left">g_bb4: Transformation from the box frame to the center of the bottom of the box</li>
+											<li align="left">g_dd1: Transformation from the dice frame to the upper right corner of the dice</li>
+											<li align="left">g_dd2: Transformation from the dice frame to the upper left corner of the dice</li>
+											<li align="left">g_dd3: Transformation from the dice frame to the bottom left corner of the dice</li>
+											<li align="left">g_dd4: Transformation from the dice frame to the bottom right corner of the dice</li>
+										</ul>
+									</div>
+									<div class="6u$ 12u$(medium)">
+										<span class="image fit"><img src="images/dice_in_a_box/drawing.png" alt="" /></span>
+									</div>
 								</div>
-
-								<h4 align="left">Frames</h4>
-								<ul>
-									<li align="left">w: World frame</li>
-									<li align="left">b: Box frame</li>
-									<li align="left">d: Dice frame</li>
-									<li align="left">b1, b2, b3, b4: Frames of the 4 sides of the box</li>
-									<li align="left">d1, d2, d3, d4: Frames of the 4 corners of the dice</li>
-								</ul>
-
-								<h4 align="left">Rigid Body Transformations</h4>
-								<ul>
-									<li align="left">g_wb: Transformation from the world frame to the box frame</li>
-									<li align="left">g_wd: Transformation from the world frame to the dice frame</li>
-									<li align="left">g_bb1: Transformation from the box frame to the center of the right side of the box</li>
-									<li align="left">g_bb2: Transformation from the box frame to the center of the top of the box</li>
-									<li align="left">g_bb3: Transformation from the box frame to the center of the left side of the box</li>
-									<li align="left">g_bb4: Transformation from the box frame to the center of the bottom of the box</li>
-									<li align="left">g_dd1: Transformation from the dice frame to the upper right corner of the dice</li>
-									<li align="left">g_dd2: Transformation from the dice frame to the upper left corner of the dice</li>
-									<li align="left">g_dd3: Transformation from the dice frame to the bottom left corner of the dice</li>
-									<li align="left">g_dd4: Transformation from the dice frame to the bottom right corner of the dice</li>
-								</ul>
 								<hr />
 
 								<h3 align="left">Calculations</h3>
 								<h4 align="left">Euler-Lagrange Equations</h4>
 								<p>Since rotational inertia is involved for both the box and the dice, the rotational kinetic energy needs to be calculated. In order to get the Euler-Lagrange equations, we first define the 6x6 inertia matrices of the box and the dice (note that the 4 sides are treated as 4 point masses for both the box and the dice), compute the body velocities of the two objects, find the kinetic energies (using the body velocities) and the potential energies of the two objects, compute the Lagrangian (total kinetic energy - total potential energy), calculate the left hand side of the Euler-Lagrange equations by doing dLdqdot.diff(t) - dLdq, set the right hand side of the Euler-Lagrange equations as the external forces, and finally equate them.</p>
 
-								<h4 align="left">Constraints</h4>
-								<p>In order to calculate the constraints, we do a check to see whether the coordinates of a corner of the dice is within a certain range. For example, to detect if the upper right corner of the dice (d1) has impacted the box, we check the coordinates of d1 in d and see if they are between -L_b / 2 and L_b / 2 where L_b is the length of the side of the box. The constraints follow the formula below:</p>
-								<div style="text-align: center;">
-									<span class="image fit"><img src="images/dice_in_a_box/constraints.png" alt="" /></span>
+								<div class="row">
+									<div class="6u 12u$(medium)">
+										<h4 align="left">Constraints</h4>
+										<p>In order to calculate the constraints, we do a check to see whether the coordinates of a corner of the dice is within a certain range. For example, to detect if the upper right corner of the dice (d1) has impacted the box, we check the coordinates of d1 in d and see if they are between -L_b / 2 and L_b / 2 where L_b is the length of the side of the box. The constraints follow the formula to the right.</p>
+										<p>There are 16 constraints in total because we do a check twice (one with -L_b / 2 and one with L_b / 2) for both x and y coordinates of each corner of the dice.</p>
+									</div>
+									<div class="6u$ 12u$(medium)">
+										<span class="image fit"><img src="images/dice_in_a_box/constraints.png" alt="" /></span>
+									</div>
 								</div>
-								<p>There are 16 constraints in total because we do a check twice (one with -L_b / 2 and one with L_b / 2) for both x and y coordinates of each corner of the dice.</p>
 
 								<h4 align="left">External Forces</h4>
 								<p>For the external forces, we define the force in the x-direction as 0, the force in the positive y-direction as the force of gravity on the box (4 * mass of the box * g), and the torque as mass of the box * g * sin(pi * t/4) * 0.2. These forces allow the box to be in the center and rotate in the simulation.</p>
 
-								<h4 align="left">Impact Update Laws</h4>
-								<p>In order to calculate the impact updates, we first define dummy variables for the configuration for before and after impact (q(tau-), qdot(tau-), and qdot(tau+)), compute dLdqdot, dPhidq, and Hamiltonian, evaluate them using dummy variables for before and after impact, and finally set up the impact update equations and solve for them. The equations are defined as:</p>
-								<div style="text-align: center;">
-									<span class="image fit"><img src="images/dice_in_a_box/impact_update_equations.png" alt="" /></span>
+								<div class="row">
+									<div class="6u 12u$(medium)">
+										<h4 align="left">Impact Update Laws</h4>
+											<p>In order to calculate the impact updates, we first define dummy variables for the configuration for before and after impact (q(tau-), qdot(tau-), and qdot(tau+)), compute dLdqdot, dPhidq, and Hamiltonian, evaluate them using dummy variables for before and after impact, and finally set up the impact update equations and solve for them. The equations are shown to the right.</p>
+									</div>
+									<div class="6u$ 12u$(medium)">
+										<span class="image fit"><img src="images/dice_in_a_box/impact_update_equations.png" alt="" /></span>
+									</div>
 								</div>
 								<hr />
 

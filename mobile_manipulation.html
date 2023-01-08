@@ -41,17 +41,11 @@
 						<section class="wrapper style5">
 							<div class="inner">
 
-								<div class="row">
-									<div class="6u 12u$(medium)">
-										<div class="video-container">
-											<iframe width="640" height="360" src="https://www.youtube.com/embed/rBaoRs2oImY" allowfullscreen></iframe>
-										</div>
-										<h3>Overview</h3>
-                                        <p>In this project, I wrote software to control the youBot to pick up a cube at a specified location, carry it to a desired location, and put it down. There were three simulated trajectories: best, overshoot, and newTask. They were all simulated in CoppeliaSim.</p>
-									</div>
-
+								<div class="video-container">
+									<iframe width="640" height="360" src="https://www.youtube.com/embed/rBaoRs2oImY" allowfullscreen></iframe>
 								</div>
-
+								<h3>Overview</h3>
+                                <p>In this project, I wrote software to control the youBot to pick up a cube at a specified location, carry it to a desired location, and put it down. There were three simulated trajectories: best, overshoot, and newTask. They were all simulated in CoppeliaSim.</p>
 								<hr />
 
 								<h3 align="left">Software</h3>
@@ -77,27 +71,21 @@
 								<div class="video-container">
 									<iframe width="640" height="360" src="https://www.youtube.com/embed/rBaoRs2oImY" allowfullscreen></iframe>
 								</div>
-								<div style="text-align: center;">
-									<span class="image fit"><img src="images/mobile_manipulation/best.png" alt="" /></span>
-								</div>
+								<span class="image fit"><img src="images/mobile_manipulation/best.png" alt="" /></span>
 
 								<h4 align="left">overshoot</h4>
 								<p>In overshoot, a less well-tuned controller (feedforward-plus-PI with Kp = 2 and Ki = 7) was used to allow the robot to accomplish the same tasks. In the animation, when the robot goes to the cube, the end-effector slightly goes past the initial location of the cube, but adjusts its position to pick up the cube and continues to move to the final location to place the cube. The plot clearly shows that the end-effector oscillates back after it slightly goes past the cube.</p>
 								<div class="video-container">
 									<iframe width="640" height="360" src="https://www.youtube.com/embed/AmVl9i39e6o" allowfullscreen></iframe>
 								</div>
-								<div style="text-align: center;">
-									<span class="image fit"><img src="images/mobile_manipulation/overshoot.png" alt="" /></span>
-								</div>
+								<span class="image fit"><img src="images/mobile_manipulation/overshoot.png" alt="" /></span>
 
 								<h4 align="left">newTask</h4>
 								<p>In newTask, a well-tuned controller (feedforward-plus-PI with Kp = 7 and Ki = 0.01) was used to allow the robot to pick up the cube at a different location and place it at a different goal location. The initial configuration of the cube was changed to (0.5 m, 0.5 m, 0 rad) and the goal configuration of the cube was changed to (0 m, -0.6 m, -1.57079632679 rad) in CoppeliaSim. Just like in the plot for best, the error converges to zero before the end-effector reaches a standoff configuration above the cube. However, there is a very little error when the end-effector goes to the final configuration of the cube.</p>
 								<div class="video-container">
 									<iframe width="640" height="360" src="https://www.youtube.com/embed/BhAKvKr_-gQ" allowfullscreen></iframe>
 								</div>
-								<div style="text-align: center;">
-									<span class="image fit"><img src="images/mobile_manipulation/newTask.png" alt="" /></span>
-								</div>
+								<span class="image fit"><img src="images/mobile_manipulation/newTask.png" alt="" /></span>
 
 								<div style="text-align: center;">
 									<p><a href="https://github.com/r-shima/mobile_manipulation" class="logo"> View Project on GitHub</a></p>
